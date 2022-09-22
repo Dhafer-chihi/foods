@@ -1,0 +1,73 @@
+<app-not-found
+  [visible]="!food"
+  notFoundMessage="Food Not Found"
+  resetLinkText="Back To Home Page"
+></app-not-found>
+<div *ngIf="food" class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <img
+          class="img-fluid rounded mb-4 mb-lg-0"
+          src="{{ food.imageUrl }}"
+          alt=""
+        />
+      </div>
+      <div class="col-lg-7">
+        <div class="text-left mb-4">
+          <h5
+            class="text-primary text-uppercase mb-3"
+            style="letter-spacing: 5px"
+          >
+            {{ food.origins }} Food
+          </h5>
+          <h1>{{ food.name }}</h1>
+        </div>
+        <p>
+          Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum
+          dolores amet voluptua duo dolores et sit ipsum rebum, sadipscing et
+          erat eirmod diam kasd labore clita est. Diam sanctus gubergren sit
+          rebum clita amet, sea est sea vero sed et. Sadipscing labore tempor at
+          sit dolor clita consetetur diam. Diam ut diam tempor no et, lorem
+          dolore invidunt no nonumy stet ea labore, dolor {{ food.origins }}
+          <br />
+          Time to cook about {{ food.cookTime }} minutes
+        </p>
+        <div>
+          <span *ngFor="let origin of food.origins">{{ origin }}</span>
+        </div>
+        <div>
+          <a
+            *ngFor="let tag of food.tags"
+            routerLink="/tag/{{ tag }}"
+            class="btn btn-outline-primary m-1"
+          >
+            {{ tag }}
+          </a>
+          <h6
+            class="text-primary text-uppercase mb-3"
+            style="letter-spacing: 5px"
+          >
+            Price : {{ food.price }}€
+          </h6>
+        </div>
+        <button
+          (click)="addToCart()"
+          class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2"
+        >
+          <i class="fas fa-cart-plus">&nbsp;&nbsp;</i>Add to cart</button
+        ><br /><br />
+        <span class="favorite {{ food.favorite ? '' : 'not' }}">❤️</span>
+        <star-rating
+          [value]="food.stars"
+          [totalstars]="5"
+          checkedcolor="#FF5E0E"
+          uncheckedcolor="black"
+          size="22px"
+          [readonly]="true"
+        >
+        </star-rating>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container py-5">
+    <div class="text-center mb-5">
+      <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px">
+        Cart page
+      </h5>
+      <h1>Cart List</h1>
+    </div>
+  </div>
+  
+  <app-not-found
+    [visible]="!cart || !cart.item.length"
+    notFoundMessage="Cart page is Emplty"
+    resetLinkText="Go to Home Page"
+  >
+  </app-not-found>
+  <div *ngIf="cart && cart.item.length" class="container">
+    <ul>
+      <li *ngFor="let cartItem of cart.item">
+        <div>
+          <img [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name" />
+        </div>
+        <div>
+          <a routerLink="/food/{{ cartItem.food.id }}">
+            {{ cartItem.food.name }}
+          </a>
+        </div>
+        <div>
+          <select
+            #quantitySelect
+            [value]="cartItem.quantity"
+            (change)="changeQuantity(cartItem, quantitySelect.value)"
+          >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div>
+          {{ cartItem.price | currency }}
+        </div>
+        <div>
+          <button class="remove-button" (click)="removeFromCart(cartItem)">
+            Remove
+          </button>
+        </div>
+      </li>
+    </ul>
+    <div class="checkout">
+      <div>
+        <div class="foods-count">{{ cart.totalCount }}</div>
+        <div class="total-price">{{ cart.totalPrice }}€</div>
+      </div>
+      <a routerLink="/checkout">Proceed to Checkout</a>
+    </div>
+  </div>
+  

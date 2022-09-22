@@ -1,0 +1,7 @@
+<div class="row"><div class="col-lg-3"></div>
+<div class="col-lg-6"> <div class="input-group">
+  <input #s type="text" class="form-control border-color:orange" style="padding: 30px;" placeholder="Search Food Mine!"(keyup.enter)="search(s.value)" >
+  <div class="input-group-append">
+      <button class="btn btn-primary px-4" (click)="search(s.value)">Search</button>
+  </div>
+</div></div>

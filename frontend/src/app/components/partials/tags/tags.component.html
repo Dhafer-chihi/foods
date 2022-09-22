@@ -1,0 +1,11 @@
+<div *ngIf="tags">
+    <h3>Tag Food</h3>
+    <a
+      *ngFor="let tag of tags"
+      routerLink="/tag/{{ tag.name }}"
+      class="btn btn-outline-primary m-1"
+    >
+      {{ tag.name }}({{ tag.count }})
+    </a>
+  </div>
+  

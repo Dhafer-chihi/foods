@@ -1,0 +1,63 @@
+<div class="container-fluid py-5">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px">
+          Food Mine
+        </h5>
+        <h1>All Food</h1>
+        <br /><br />
+        <app-search></app-search>
+      </div>
+      <br /><br /><br />
+      <app-tags></app-tags><br />
+      <app-not-found
+        [visible]="!foods || !foods.length"
+        resetLinkText="Reset Search"
+      ></app-not-found>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let food of foods">
+          <div class="rounded overflow-hidden mb-2">
+            <img class="img-fluid" src="{{ food.imageUrl }}" alt="" />
+            <div class="bg-secondary p-4">
+              <div class="d-flex justify-content-between mb-3">
+                <small class="m-0"
+                  ><i class="fa fa-check text-primary mr-2"></i
+                  >{{ food.tags }}</small
+                >
+                <small class="m-0"
+                  ><i class="far fa-clock text-primary mr-2"></i
+                  >{{ food.cookTime }}</small
+                >
+              </div>
+              <a class="h5" routerLink="/food/{{ food.id }}">{{ food.name }}</a
+              ><br />
+              <span class="favorites {{ food.favorite ? '' : 'not' }}">❤️</span
+              ><br /><br />
+              <small class="m-0"
+                ><i class="fa fa-flag text-primary mr-2"></i
+                >{{ food.origins }}</small
+              >
+  
+              <div class="border-top mt-4 pt-4">
+                <div class="d-flex justify-content-between">
+                  <div class="stars">
+                    <star-rating
+                      [value]="food.stars"
+                      [totalstars]="5"
+                      checkedcolor="#FF5E0E"
+                      uncheckedcolor="black"
+                      size="22px"
+                      [readonly]="true"
+                    >
+                    </star-rating>
+                  </div>
+                  <h5 class="m-0">{{ food.price }}€</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
